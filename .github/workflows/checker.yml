@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y curl
-          curl https://installer.plesk.com/plesk-installer | sudo bash
+          curl https://installer.plesk.com/plesk-installer | sudo bash -s -- --web-interface-repository-url none
 
       - name: Verify Plesk installation
         run: plesk version
