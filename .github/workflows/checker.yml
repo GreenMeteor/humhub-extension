@@ -1,0 +1,30 @@
+name: Plesk Installation Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-installation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Plesk CLI
+        run: |
+          sudo apt update
+          sudo apt install -y curl
+          curl https://installer.plesk.com/plesk-installer | sudo bash
+
+      - name: Verify Plesk installation
+        run: plesk version
+
+      - name: Run installation script
+        run: |
+          php humhub-extension.php install
