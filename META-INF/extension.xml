@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension>
+    <name>HumHub Extension</name>
+    <version>1.0</version>
+    <description>Installs HumHub on Plesk</description>
+    <author>Your Name</author>
+    <packager>Your Company</packager>
+    <license>Proprietary</license>
+    <compatibility>
+        <plesk min-version="18.0"/>
+    </compatibility>
+</extension>
