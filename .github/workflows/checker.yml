@@ -31,8 +31,16 @@ jobs:
           expect -c '
             spawn plesk installer --all-versions --web-interface-repository-url none
             expect {
-              "(y/N)" {
+              "Would you like to help Plesk make better products by sending information" {
                 send "N\r"
+                exp_continue
+              }
+              "Type Y for yes or N for no" {
+                send "N\r"
+                exp_continue
+              }
+              "Select an action" {
+                send "install\r"
                 exp_continue
               }
               eof
