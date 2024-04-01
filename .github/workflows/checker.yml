@@ -25,7 +25,10 @@ jobs:
       - name: Verify Plesk installation
         run: plesk version
 
+      - name: Navigate to install folder
+        run: cd install
+
       - name: Run installation script
         run: |
           echo "Running installation script..."
-          printf 'N\n' | php .install/humhub-extension.php install
+          php humhub-extension.php install
