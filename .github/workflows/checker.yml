@@ -25,9 +25,6 @@ jobs:
       - name: Verify Plesk installation
         run: plesk version
 
-      - name: Navigate to install folder
-        run: cd install
-
       - name: Run installation script
         run: |
           echo "Running installation script..."
@@ -36,6 +33,10 @@ jobs:
             expect {
               "Would you like to help Plesk make better products by sending information" {
                 send "N\r"
+                exp_continue
+              }
+              "Select an action" {
+                send "install\r"
                 exp_continue
               }
               eof
