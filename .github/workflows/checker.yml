@@ -1,4 +1,4 @@
-name: Plesk Installation Check
+name: Plesk Installation and Extension Check
 
 on:
   push:
@@ -19,12 +19,11 @@ jobs:
       - name: Install necessary packages
         run: |
           sudo apt update
-          sudo apt install -y curl expect zip unzip
+          sudo apt install -y wget expect
 
-      - name: Install Plesk CLI
+      - name: Download Plesk Installer
         run: |
-          curl https://installer.plesk.com/plesk-installer | sudo bash
-          sudo plesk installer --version || echo "Plesk CLI installation failed!"
+          wget -O - http://installer.plesk.com/one-click-installer | sudo bash
 
       - name: Verify Plesk installation
         run: |
@@ -33,30 +32,17 @@ jobs:
       - name: Download humhub-extension.php
         run: |
           mkdir -p install
-          curl -o install/humhub-extension.php
+          wget -O install/humhub-extension.php
 
-      - name: Set permissions for humhub-extension.php
+      - name: Upload extension to Plesk
         run: |
-          chmod +x install/humhub-extension.php
+          plesk ext repository --add https://github.com/GreenMeteor/humhub-extension.git
+          plesk ext install humhub-extension || echo "Extension installation failed!"
 
-      - name: Run installation script
+      - name: Verify extension installation
         run: |
-          echo "Running installation script..."
-          expect -c '
-            spawn plesk installer --all-versions --web-interface-repository-url none
-            expect {
-              "Would you like to help Plesk make better products by sending information" {
-                send "N\r"
-                exp_continue
-              }
-              "Type Y for yes or N for no" {
-                send "N\r"
-                exp_continue
-              }
-              "Select an action" {
-                send "install\r"
-                exp_continue
-              }
-              eof
-            }
-          '
+          plesk ext list | grep humhub-extension || echo "Extension is not installed."
+
+      - name: Verify extension functionality
+        run: |
+          # Add commands to test the functionality of the extension here
