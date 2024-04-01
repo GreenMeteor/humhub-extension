@@ -19,7 +19,7 @@ jobs:
       - name: Install Plesk CLI
         run: |
           sudo apt update
-          sudo apt install -y curl
+          sudo apt install -y curl expect
           curl https://installer.plesk.com/plesk-installer | sudo bash
 
       - name: Verify Plesk installation
@@ -31,4 +31,9 @@ jobs:
       - name: Run installation script
         run: |
           echo "Running installation script..."
-          plesk installer --all-versions --web-interface-repository-url none
+          expect -c '
+            spawn plesk installer --all-versions --web-interface-repository-url none
+            expect "Would you like to help Plesk make better products by sending information"
+            send "N\n"
+            expect eof
+          '
