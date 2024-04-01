@@ -27,4 +27,5 @@ jobs:
 
       - name: Run installation script
         run: |
+          echo "Running installation script..."
           php humhub-extension.php install
