@@ -2,9 +2,9 @@
 <extension>
     <name>HumHub Extension</name>
     <version>1.0</version>
-    <description>Installs HumHub on Plesk</description>
-    <author>Your Name</author>
-    <packager>Your Company</packager>
+    <description>Install HumHub on Plesk</description>
+    <author>ArchBlood</author>
+    <packager>Green Meteor</packager>
     <license>Proprietary</license>
     <compatibility>
         <plesk min-version="18.0"/>
