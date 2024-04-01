@@ -33,7 +33,11 @@ jobs:
       - name: Download humhub-extension.php
         run: |
           mkdir -p install
-          curl -o install/humhub-extension.php https://raw.githubusercontent.com/GreenMeteor/humhub-extension/main/install/humhub-extension.php
+          curl -o install/humhub-extension.php
+
+      - name: Set permissions for humhub-extension.php
+        run: |
+          chmod +x install/humhub-extension.php
 
       - name: Run installation script
         run: |
