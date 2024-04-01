@@ -19,18 +19,16 @@ jobs:
       - name: Install Plesk CLI
         run: |
           sudo apt update
-          sudo apt install -y curl expect
+          sudo apt install -y curl
           curl https://installer.plesk.com/plesk-installer | sudo bash
 
       - name: Verify Plesk installation
         run: plesk version
 
+      - name: Navigate to install folder
+        run: cd install
+
       - name: Run installation script
         run: |
           echo "Running installation script..."
-          expect -c '
-            spawn php humhub-extension.php install
-            expect "Would you like to help Plesk make better products by sending information"
-            send "N\n"
-            expect eof
-          '
+          plesk installer --all-versions --web-interface-repository-url none
