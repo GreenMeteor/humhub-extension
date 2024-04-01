@@ -20,12 +20,15 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y curl
-          curl https://installer.plesk.com/plesk-installer | sudo bash -s -- --web-interface-repository-url none
+          curl https://installer.plesk.com/plesk-installer | sudo bash
 
       - name: Verify Plesk installation
         run: plesk version
 
+      - name: Set Plesk installer environment variable
+        run: export PLESK_INSTALLER_AUTOINSTALL=1
+
       - name: Run installation script
         run: |
           echo "Running installation script..."
-          printf 'N\n' | php humhub-extension.php install
+          php humhub-extension.php install
