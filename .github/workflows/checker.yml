@@ -33,7 +33,11 @@ jobs:
           echo "Running installation script..."
           expect -c '
             spawn plesk installer --all-versions --web-interface-repository-url none
-            expect "Would you like to help Plesk make better products by sending information"
-            send "N\n"
-            expect eof
+            expect {
+              "Would you like to help Plesk make better products by sending information" {
+                send "N\r"
+                exp_continue
+              }
+              eof
+            }
           '
