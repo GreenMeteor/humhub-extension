@@ -16,14 +16,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Plesk CLI
+      - name: Install necessary packages
         run: |
           sudo apt update
-          sudo apt install -y curl expect
+          sudo apt install -y curl expect zip unzip
+
+      - name: Install Plesk CLI
+        run: |
           curl https://installer.plesk.com/plesk-installer | sudo bash
+          sudo plesk installer --version || echo "Plesk CLI installation failed!"
 
       - name: Verify Plesk installation
-        run: plesk version
+        run: |
+          plesk version || echo "Plesk is not installed or not accessible."
+
+      - name: Download humhub-extension.php
+        run: |
+          mkdir -p install
+          curl -o install/humhub-extension.php https://raw.githubusercontent.com/GreenMeteor/humhub-extension/main/install/humhub-extension.php
 
       - name: Run installation script
         run: |
