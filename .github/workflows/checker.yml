@@ -35,6 +35,10 @@ jobs:
                 send "N\r"
                 exp_continue
               }
+              "Type Y for yes or N for no" {
+                send "N\r"
+                exp_continue
+              }
               "Select an action" {
                 send "install\r"
                 exp_continue
