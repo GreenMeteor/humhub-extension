@@ -1,4 +1,5 @@
 <?php
+
 // Read database configurations from config.json
 $config = json_decode(file_get_contents('config.json'), true);
 
@@ -41,4 +42,43 @@ if (mysqli_query($conn, $sqlGrantPrivileges)) {
 
 // Close MySQL connection
 mysqli_close($conn);
+
+// Define the URL of the HumHub zip file to download
+$humhubZipUrl = 'https://download.humhub.com/downloads/install/humhub-1.16.0-beta.1.zip';
+
+// Define the directory where HumHub should be extracted (root directory)
+$humhubExtractDir = __DIR__; 
+
+// Download and extract HumHub
+if (downloadAndExtractHumHub($humhubZipUrl, $humhubExtractDir)) {
+    echo "HumHub downloaded and extracted successfully<br>";
+} else {
+    echo "Error downloading or extracting HumHub<br>";
+}
+
+// Function to download and extract HumHub
+function downloadAndExtractHumHub($url, $extractDir) {
+    // Download the zip file
+    $zipFile = file_get_contents($url);
+    if ($zipFile === false) {
+        return false;
+    }
+
+    // Save the zip file to a temporary location
+    $tempFile = tempnam(sys_get_temp_dir(), 'humhub');
+    file_put_contents($tempFile, $zipFile);
+
+    // Extract the zip file
+    $zip = new ZipArchive;
+    if ($zip->open($tempFile) === true) {
+        $zip->extractTo($extractDir);
+        $zip->close();
+        unlink($tempFile); // Clean up temporary zip file
+        return true;
+    } else {
+        unlink($tempFile); // Clean up temporary zip file
+        return false;
+    }
+}
+
 ?>
