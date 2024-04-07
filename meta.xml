@@ -1,0 +1,20 @@
+<extension>
+    <name>HumHub Installer</name>
+    <version>1.0.0</version>
+    <description>This extension installs and configures HumHub on your Plesk server.</description>
+    <author>
+        <name>Green Meteor</name>
+        <email>hello@greenmeteor.net</email>
+        <url>https://greenmeteor.net</url>
+    </author>
+    <creationDate>2024-04-07</creationDate>
+    <license>AGPL-3.0</license>
+    <keywords>
+        <keyword>humhub</keyword>
+        <keyword>installer</keyword>
+        <keyword>plesk</keyword>
+    </keywords>
+    <compatibleWith>
+        <pleskObsidian>true</pleskObsidian>
+    </compatibleWith>
+</extension>
