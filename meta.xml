@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+    <name>humhub-extension</name>
+    <version>1.1</version>
+    <release>1</release>
+    <summary>HumHub Installer</summary>
+    <description>
+        A Plesk extension for downloading, configuring, and setting up HumHub.
+    </description>
+    <vendor>
+        <name>Green Meteor</name>
+        <email>hello@greenmeteor.net</email>
+    </vendor>
+    <permissions>
+        <permission>admin</permission>
+    </permissions>
+    <requirements>
+        <php>
+            <min>8.1.0</min>
+        </php>
+    </requirements>
+</package>
