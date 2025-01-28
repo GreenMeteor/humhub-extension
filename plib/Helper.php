@@ -7,7 +7,7 @@ class Helper
     public static function getFormHtml()
     {
         return '
-        <form id="humhub-installer-form" method="POST" action="/modules/humhub-installer/install">
+        <form id="humhub-installer-form" method="POST" action="/modules/humhub-extension/install">
             <label for="domain">Domain:</label>
             <input type="text" name="domain" required />
 
