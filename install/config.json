@@ -1,7 +1,0 @@
-{
-    "dbName": "humhub_prod_db",
-    "dbUser": "humhub_prod",
-    "dbPass": "change-me",
-    "installationPath": "/var/www/humhub",
-    "domain": "humhub.example.com"
-}
